@@ -1,6 +1,6 @@
-package repositorio;
+package gal.usc.grei.cn.precios.repositorio;
 
-import modelo.Precio;
+import gal.usc.grei.cn.precios.modelo.Precio;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import java.util.Optional;

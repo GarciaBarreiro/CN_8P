@@ -1,4 +1,4 @@
-package modelo;
+package gal.usc.grei.cn.precios.modelo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.annotation.*;

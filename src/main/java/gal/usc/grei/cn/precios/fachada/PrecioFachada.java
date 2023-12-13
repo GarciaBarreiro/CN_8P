@@ -1,9 +1,9 @@
-package fachada;
+package gal.usc.grei.cn.precios.fachada;
 
-import modelo.Precio;
+import gal.usc.grei.cn.precios.modelo.Precio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositorio.PrecioRepositorio;
+import gal.usc.grei.cn.precios.repositorio.PrecioRepositorio;
 
 import java.util.Optional;
 
