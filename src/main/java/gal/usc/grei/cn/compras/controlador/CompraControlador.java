@@ -42,9 +42,24 @@ public class CompraControlador {
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     ResponseEntity<Object> create(@Valid @RequestBody Compra compra) {
+        // si se quiere guardar las compras rechazadas, se tiene que usar el create() de la fachada
+        if(compra.getEstado().startsWith("RECHAZADO") || compra.getEstado().startsWith("ACEPTADO")) {
+            return ResponseEntity.badRequest().body(compra.setEstado("RECHAZADO " +
+                    "(no se puede poner el estado 'RECHAZADO' ni 'ACEPTADO' manualmente"));
+        }
+        if(compra.getComprador().isEmpty()) {
+            return ResponseEntity.badRequest().body(compra.setEstado("RECHAZADO " +
+                    "(falta un commprador)"));
+        }
+        if(!compra.getModoPago().equals("Tarjeta") &&
+                !compra.getModoPago().equals("Efectivo") &&
+                !compra.getModoPago().equals("Online")) {
+            return ResponseEntity.badRequest().body(compra.setEstado("RECHAZADO " +
+                    "(solo se aceptan 'Tarjeta', 'Efectivo' y 'Online' como modo de pago)"));
+        }
         try {
             //Tratamos de crear la compra:
-            Optional<Compra> inserted = compras.create(compra);
+            Optional<Compra> inserted = compras.create(compra.setEstado("ACEPTADO"));
             //Si se crea correctamente, devolvemos la información de la compra creada.
             return ResponseEntity.created(URI.create(
                             ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString() +

@@ -23,6 +23,36 @@ public class Compra {
     private Float unidad;
     @NotNull(message = "El precio total no puede ser vacío")
     private Float total;
+    private String comprador; // Nombre del comprador
+    private String modoPago; // Tarjeta, Efectivo, Online
+    private String estado; // ACEPTADO, RECHAZADO
+
+    public String getComprador() {
+        return comprador;
+    }
+
+    public Compra setComprador(String comprador) {
+        this.comprador = comprador;
+        return this;
+    }
+
+    public String getModoPago() {
+        return modoPago;
+    }
+
+    public Compra setModoPago(String modoPago) {
+        this.modoPago = modoPago;
+        return this;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public Compra setEstado(String estado) {
+        this.estado = estado;
+        return this;
+    }
 
     public String getId() {
         return id;
@@ -83,12 +113,12 @@ public class Compra {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Compra compra = (Compra) o;
-        return Objects.equals(getId(), compra.getId()) && Objects.equals(getFecha(), compra.getFecha()) && Objects.equals(getSimbolo(), compra.getSimbolo()) && Objects.equals(getVolumen(), compra.getVolumen()) && Objects.equals(getUnidad(), compra.getUnidad()) && Objects.equals(getTotal(), compra.getTotal());
+        return Objects.equals(getId(), compra.getId()) && Objects.equals(getFecha(), compra.getFecha()) && Objects.equals(getSimbolo(), compra.getSimbolo()) && Objects.equals(getVolumen(), compra.getVolumen()) && Objects.equals(getUnidad(), compra.getUnidad()) && Objects.equals(getTotal(), compra.getTotal()) && Objects.equals(getComprador(), compra.getComprador()) && Objects.equals(getModoPago(), compra.getModoPago()) && Objects.equals(getEstado(), compra.getEstado());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFecha(), getSimbolo(), getVolumen(), getUnidad(), getTotal());
+        return Objects.hash(getId(), getFecha(), getSimbolo(), getVolumen(), getUnidad(), getTotal(), getComprador(), getModoPago(), getEstado());
     }
 
     @Override
@@ -100,6 +130,9 @@ public class Compra {
                 ", volumen=" + volumen +
                 ", unidad=" + unidad +
                 ", total=" + total +
+                ", comprador='" + comprador + '\'' +
+                ", modoPago='" + modoPago + '\'' +
+                ", estado='" + estado + '\'' +
                 '}';
     }
 }
